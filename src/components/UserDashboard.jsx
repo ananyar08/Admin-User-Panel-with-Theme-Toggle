@@ -1,24 +1,26 @@
-// src/components/UserDashboard.jsx
+
 import React from 'react';
-import { useData } from '../context/DataContext';
+import { useData } from '../context/DataContext';  // Import the useData hook
+import './user-dashboard.css';  // Import the CSS file
+
 
 const UserDashboard = () => {
-  const { dataList } = useData();
+  const { dataList } = useData(); // Get data from context
 
   return (
-    <div>
-      <h2>User Dashboard</h2>
-      <h3>Data List</h3>
-      <ul>
-        {dataList.length === 0 ? (
-          <li>No data available</li>
-        ) : (
-          dataList.map((data) => (
-            <li key={data.id}>
-              {data.name} ({data.email})
-            </li>
-          ))
-        )}
+    <div className="user-dashboard-container">
+      <h2 className="user-dashboard-title">User Dashboard</h2>
+
+      {/* Display Data as Unordered List */}
+      <ul className="data-list">
+        {dataList.map((data) => (
+          <li key={data.id} className="data-item">
+            <div className="data-info">
+              <span className="data-name">{data.name}</span>
+              <span className="data-email">{data.email}</span>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   );

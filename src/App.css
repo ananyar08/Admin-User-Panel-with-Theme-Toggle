@@ -117,3 +117,95 @@ button:hover {
 .toggle-btn:hover {
   background-color: #666;
 }
+
+
+/* Base styles for the login container */
+.login-container {
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9; /* Light background color */
+  padding: 100px;
+}
+
+/* Style for the form box */
+.login-form {
+  background-color: #fff; /* Form background */
+  padding: 30px; /* Add spacing inside the box */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: 100%;
+  max-width: 400px; /* Limit form width */
+}
+
+/* Center the login title */
+.login-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Style for form groups (label and input spacing) */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Inputs and select dropdown */
+.input-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #4f8eff; /* Focus highlight color */
+  outline: none;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #4f8eff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: red; /* Darker shade on hover */
+}
+
+/* Dark mode styles */
+.dark-mode .login-form {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-mode .input-field {
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #777;
+}
+
+.dark-mode .submit-btn {
+  background-color: #666;
+}
+
+.dark-mode .submit-btn:hover {
+  background-color: #444;
+}
