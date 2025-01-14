@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useData } from "../context/DataContext";
 import DataForm from "./DataForm";
-import { PlusCircle, Edit2, Trash2, Users } from "lucide-react";
+import { PlusCircle, Edit2, Trash2, Users, LogOut } from "lucide-react"; // Add LogOut icon
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const AdminDashboard = () => {
   const { dataList, addData, updateData, deleteData } = useData();
   const [editingData, setEditingData] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleEdit = (data) => {
     setEditingData(data);
@@ -27,6 +29,11 @@ const AdminDashboard = () => {
     }
     setShowForm(false);
     setEditingData(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("role"); // Clear the role from localStorage
+    navigate("/"); // Redirect to the login page
   };
 
   return (
@@ -50,6 +57,14 @@ const AdminDashboard = () => {
             >
               <PlusCircle className="h-5 w-5 mr-2" />
               Add New User
+            </button>
+            {/* Logout Button */}
+            <button
+              onClick={handleLogout}
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200 ml-4"
+            >
+              <LogOut className="h-5 w-5 mr-2" />
+              Logout
             </button>
           </div>
         </div>

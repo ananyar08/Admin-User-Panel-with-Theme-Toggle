@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // Import the useAuth hook
 import { Eye, EyeOff, Mail, Lock, UserCircle } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
@@ -8,21 +9,29 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(""); // State to store login error message
   const navigate = useNavigate();
+  const { login } = useAuth(); // Access login from AuthContext
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      alert("Please fill in all fields.");
+      setError("Please fill in all fields.");
       return;
     }
 
-    if (role === "admin") {
-      localStorage.setItem("role", "admin");
-      navigate("/admin");
+    // Attempt to login using mock data
+    const loginSuccess = login(email, password);
+
+    if (loginSuccess) {
+      // Redirect based on the role
+      if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/user");
+      }
     } else {
-      localStorage.setItem("role", "user");
-      navigate("/user");
+      setError("Invalid email or password.");
     }
   };
 
@@ -106,6 +115,13 @@ const Login = () => {
                 </select>
               </div>
             </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="text-red-500 text-sm mt-2 text-center">
+                {error}
+              </div>
+            )}
 
             {/* Submit Button */}
             <button

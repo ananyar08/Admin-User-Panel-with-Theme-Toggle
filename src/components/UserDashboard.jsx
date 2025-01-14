@@ -1,9 +1,16 @@
 import React from "react";
 import { useData } from "../context/DataContext"; // Import the useData hook
-import { Users } from "lucide-react"; // Import Users icon
+import { Users, LogOut } from "lucide-react"; // Add LogOut icon
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const UserDashboard = () => {
   const { dataList } = useData(); // Get data from context
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleLogout = () => {
+    localStorage.removeItem("role"); // Clear the role from localStorage
+    navigate("/"); // Redirect to the login page
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -17,6 +24,14 @@ const UserDashboard = () => {
                 User Dashboard
               </h1>
             </div>
+            {/* Logout Button */}
+            <button
+              onClick={handleLogout}
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200 ml-4"
+            >
+              <LogOut className="h-5 w-5 mr-2" />
+              Logout
+            </button>
           </div>
         </div>
       </div>
