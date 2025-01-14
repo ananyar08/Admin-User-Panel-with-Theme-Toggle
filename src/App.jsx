@@ -1,11 +1,11 @@
 // src/App.jsx
 import React from "react";
 import { Routes, Route } from "react-router-dom"; // Only import Routes and Route
-import ThemeToggle from "./components/ThemeToggle";
-import Login from "./components/Login";
-import AdminDashboard from "./components/AdminDashboard";
-import UserDashboard from "./components/UserDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+import UserDashboard from "./pages/UserDashboard";
 import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
+import Login from "./pages/Login";
+import ThemeToggle from "./components/ThemeToggle";
 
 const App = () => {
   return (

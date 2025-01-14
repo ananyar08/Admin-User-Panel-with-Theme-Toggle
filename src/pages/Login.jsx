@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // Import the useAuth hook
 import { Eye, EyeOff, Mail, Lock, UserCircle } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Login = () => {
-  const [role, setRole] = useState("user");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(""); // State to store login error message
+  const [role, setRole] = useState("user"); // Role selected by the user
   const navigate = useNavigate();
   const { login } = useAuth(); // Access login from AuthContext
 
@@ -20,18 +20,23 @@ const Login = () => {
       return;
     }
 
-    // Attempt to login using mock data
-    const loginSuccess = login(email, password);
-
-    if (loginSuccess) {
-      // Redirect based on the role
-      if (role === "admin") {
+    // Check if the credentials match the selected role
+    if (role === "user") {
+      // User credentials
+      if (email === "user@example.com" && password === "user123") {
+        login(email, password); // Successful login
+        navigate("/user");
+      } else {
+        setError("Invalid email or password for user.");
+      }
+    } else if (role === "admin") {
+      // Admin credentials
+      if (email === "admin@example.com" && password === "admin123") {
+        login(email, password); // Successful login
         navigate("/admin");
       } else {
-        navigate("/user");
+        setError("Invalid email or password for admin.");
       }
-    } else {
-      setError("Invalid email or password.");
     }
   };
 

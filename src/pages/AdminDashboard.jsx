@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useData } from "../context/DataContext";
-import DataForm from "./DataForm";
+import DataForm from "../components/DataForm";
 import { PlusCircle, Edit2, Trash2, Users, LogOut } from "lucide-react"; // Add LogOut icon
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
@@ -50,7 +50,7 @@ const AdminDashboard = () => {
                 Admin Dashboard
               </h1>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 sm:flex-col sm:space-y-4 sm:space-x-0">
               {" "}
               {/* Add spacing between buttons */}
               <button
