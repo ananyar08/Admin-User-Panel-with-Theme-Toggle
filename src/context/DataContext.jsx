@@ -1,29 +1,29 @@
+// DataContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 const DataContext = createContext();
 
-export const useData = () => useContext(DataContext);
+export const useData = () => {
+  return useContext(DataContext);
+};
 
 export const DataProvider = ({ children }) => {
   const [dataList, setDataList] = useState([]);
 
-  const addData = (newData) => {
-    setDataList((prevData) => [
-      ...prevData,
-      { id: Date.now(), name: newData.name, email: newData.email },
-    ]);
+  const addData = (data) => {
+    setDataList([...dataList, data]);
   };
 
   const updateData = (updatedData) => {
-    setDataList((prevData) =>
-      prevData.map((data) =>
-        data.id === updatedData.id ? { ...data, ...updatedData } : data
+    setDataList(
+      dataList.map((data) =>
+        data.id === updatedData.id ? updatedData : data
       )
     );
   };
 
   const deleteData = (id) => {
-    setDataList((prevData) => prevData.filter((data) => data.id !== id));
+    setDataList(dataList.filter((data) => data.id !== id));
   };
 
   return (
@@ -32,3 +32,4 @@ export const DataProvider = ({ children }) => {
     </DataContext.Provider>
   );
 };
+

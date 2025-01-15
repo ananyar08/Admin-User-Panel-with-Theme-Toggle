@@ -1,4 +1,3 @@
-// src/components/ThemeToggle.jsx
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -7,16 +6,14 @@ const ThemeToggle = () => {
 
   return (
     <button
-  onClick={toggleTheme}
-  style={{ position: 'fixed', top: '16px', left: '16px' }} // Positioning
-  className="p-4 rounded-lg bg-gray-200 dark:bg-gray-700 text-black dark:text-white text-lg font-bold"
->
-  {theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-</button>
-
+      onClick={toggleTheme}
+      style={{ position: 'fixed', top: '16px', left: '16px' }} // Positioning for the button
+      className="p-4 rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white text-lg font-bold"
+    >
+      {/* Emoji for Dark Mode or Light Mode */}
+      {theme === 'light' ? '🌙' : '🌞'}
+    </button>
   );
 };
 
 export default ThemeToggle;
-
-
